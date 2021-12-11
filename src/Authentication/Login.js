@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../Components/Navbar/Navbar";
 import { Link, useHistory } from "react-router-dom";
 import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Loading from "../Misc/Loading";
+import "./Login.css";
+import logoPic from "../Images/login.jpg";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -26,29 +27,49 @@ const Login = () => {
   };
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
 
-      <input
-        type="text"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="E-mail Address"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-      />
-      <button onClick={() => signInWithEmailAndPassword(email, password)}>
-        Login
-      </button>
+      <div className="login-main">
+        <div className="login-left">
+          <img className="login-pic" src={logoPic} alt=""></img>
+        </div>
+        <div className="login-right">
+          <Link to="/">
+            <button className="Login_button">X</button>
+          </Link>
+          <div className="Login_form">
+            <h1 className="heading-login">The Maintainace Nepal</h1>
+            <h2>Login Page </h2>
+            <label className="Login_email">Email Address</label>
+            <input
+              className="Login_input"
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter Email Address"
+            />
+            <label className="Login_password"> Password</label>
+            <input
+              className="Login_input"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter Password"
+            />
+            <button
+              className="Login_button"
+              onClick={() => signInWithEmailAndPassword(email, password)}
+            >
+              Login
+            </button>
+          </div>
 
-      <div>
-        <Link to="/reset">Forgot Password</Link>
-      </div>
-      <div>
-        Don't have an account? <Link to="/register">Register</Link> now.
+          <div>
+            <h5>
+              Don't have an account? <Link to="/register">Register</Link> now.
+            </h5>
+          </div>
+        </div>
       </div>
     </>
   );

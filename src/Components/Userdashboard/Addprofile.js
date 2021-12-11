@@ -14,7 +14,7 @@ const Addprofile = () => {
 
   const onFileChange = async (e) => {
     const file = e.target.files[0];
-    const storageRef = app.storage("/docs/").ref();
+    const storageRef = app.storage().ref();
     const fileRef = storageRef.child(file.name);
     await fileRef.put(file);
     setDocsUrl(await fileRef.getDownloadURL());
@@ -22,12 +22,13 @@ const Addprofile = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const phone = e.target.phone.value;
-    const address = e.target.address.value;
+
+    const charge = e.target.charge.value;
+
     const experience = e.target.experience.value;
     const about = e.target.about.value;
     const experties = e.target.experties.value;
-    if (!phone || !address || !experience || !about || !DocsUrL || !experties) {
+    if (!experience || !about || !DocsUrL || !experties) {
       return;
     }
     try {
@@ -37,8 +38,8 @@ const Addprofile = () => {
 
         .update(
           {
-            phone: phone,
-            address: address,
+            charge: charge,
+
             experties: experties,
             experience: experience,
             about: about,
@@ -46,35 +47,26 @@ const Addprofile = () => {
             created_at: new Date(),
           },
           { merge: true }
-        )
-        .then(() => alert("Updated"))
-
-        .catch((err) => console.log(err.message()));
+        );
     } catch (error) {
       console.log(error);
     }
-
-    history.push("/myprofile");
   };
 
   return (
     <div>
       <Usernavbar />
-      {!userdata.phone || !userdata.experties || !userdata.address ? (
+      {!userdata.document || !userdata.experties ? (
         <>
           <h2>Add Profile</h2>
           <form onSubmit={onSubmit}>
-            <input type="text" name="address" placeholder="address" required />
-            <input type="text" name="phone" placeholder="phone" required />
+            <input type="text" name="charge" placeholder="Charges" required />
             <h4>Experties on:</h4>
             <select name="experties" id="experties" required>
               <option value="Plumber">Plumber</option>
-              <option value="Kitchen Appliances">Kitchen Appliances</option>
-              <option value="Electronic Appliances">
-                Electronic Appliances
-              </option>
-              <option value="Bike Mechanic">Bike Mechanic</option>
-              <option value="Car Mechanic">Car Mechanic</option>
+              <option value="Mechanics">Mechanics </option>
+              <option value="Technicians">Technicians</option>
+              <option value="Electricians">Electricians</option>
             </select>
             <input type="text" name="experience" placeholder="experience" />
             <input
@@ -92,13 +84,13 @@ const Addprofile = () => {
               required
               onChange={onFileChange}
             />
-            <button type="submit">Add Profile</button>
+            <button>Add Profile</button>
           </form>
         </>
       ) : (
         <>
           <h1>
-            <center>Profile Already Updated</center>
+            <center>Profile Already Added</center>
           </h1>
         </>
       )}

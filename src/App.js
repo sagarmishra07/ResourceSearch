@@ -12,6 +12,11 @@ import Navbar from "./Components/Navbar/Navbar";
 import Myprofile from "./Components/Userdashboard/Myprofile";
 import Addprofile from "./Components/Userdashboard/Addprofile";
 import Editprofile from "./Components/Userdashboard/Editprofile";
+import Userprofile from "./Components/Admindashboard/Userprofile";
+import Edituserprofile from "./Components/Admindashboard/Edituserprofile";
+import ProfileDetails from "./Components/Homepage/ProfileDetails";
+import Locationfilter from "./Components/Resource/Locationfilter";
+import Request from "./Components/Userdashboard/Request";
 
 const App = () => {
   const Error = () => {
@@ -30,46 +35,56 @@ const App = () => {
     <>
       <Router>
         <Switch>
-          <Router>
-            <Switch>
-              <Route path="/login">
-                <Login />
-              </Route>
-              <Route path="/register">
-                <Register />
-              </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/register">
+            <Register />
+          </Route>
 
-              <Route path="/dashboard">
-                <Dashboard />
-              </Route>
+          <Route path="/dashboard">
+            <Dashboard />
+          </Route>
 
-              <Route path="/resource">
-                <Resource />
-              </Route>
+          <Route path="/resource">
+            <Resource />
+          </Route>
 
-              <Route exact path="/">
-                <Homepage />
-              </Route>
-              <Route path="/contact">
-                <Contact />
-              </Route>
-              <Route path="/about">
-                <About />
-              </Route>
-              <Route path="/myprofile">
-                <Myprofile />
-              </Route>
-              <Route path="/addprofile">
-                <Addprofile />
-              </Route>
-              <Route path="/editprofile/:id">
-                <Editprofile />
-              </Route>
-              <Route path="">
-                <Error />
-              </Route>
-            </Switch>
-          </Router>
+          <Route exact path="/">
+            <Homepage />
+          </Route>
+          <Route path="/contact">
+            <Contact />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+
+          <Route path="/myprofile">
+            <Myprofile />
+          </Route>
+          <Route path="/addprofile">
+            <Addprofile />
+          </Route>
+          <Route path="/editprofile/:id">
+            <Editprofile />
+          </Route>
+          <Route path="/userprofile/:id">
+            <Userprofile />
+          </Route>
+          <Route path="/edituserprofile/:id">
+            <Edituserprofile />
+          </Route>
+          <Route path="/profiledetails/:id">
+            <ProfileDetails />
+          </Route>
+          <Route path="/locationfilter">
+            <Locationfilter />
+          </Route>
+
+          <Route path="">
+            <Error />
+          </Route>
         </Switch>
       </Router>
     </>

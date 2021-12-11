@@ -42,7 +42,7 @@ const Dashboard = () => {
             <div>
               <Navbar />
               <h1>
-                <center>Welcome To Dashboard</center>
+                <center>Welcome</center>
               </h1>
             </div>
           );

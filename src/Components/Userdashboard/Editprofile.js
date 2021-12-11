@@ -20,25 +20,19 @@ const Editprofile = () => {
     experience: "",
     image: "",
 
-    isVerified: false,
+    isVerified: true,
   });
-  const loadProfile = async () => {
-    try {
-      const result = await docRef.get();
-      if (result.exists) {
-        setProfile(result.data());
-      } else {
-        console.log("No such document!");
-      }
-    } catch (error) {
-      console.log("Error getting document:", error);
+
+  useEffect(async () => {
+    let unsubscribe;
+
+    const result = (unsubscribe = await docRef.get());
+    if (result.exists) {
+      setProfile(result.data());
+    } else {
+      console.log("No such document!");
     }
-  };
-  useEffect(() => {
-    if (id) {
-      loadProfile();
-    }
-  }, [id]);
+  }, []);
   const oninputChange = (e) => {
     setProfile({ ...profile, [e.target.name]: e.target.value });
   };
@@ -85,22 +79,22 @@ const Editprofile = () => {
         />
 
         <input
-          placeholder="Enter Location"
-          name="location"
+          placeholder="Enter address"
+          name="address"
           value={profile.address}
           onChange={oninputChange}
         />
 
         <input
-          placeholder="Enter website"
-          name="website"
+          placeholder="Phone"
+          name="phone"
           value={profile.phone}
           onChange={oninputChange}
         />
 
         <input
-          placeholder="Enter website"
-          name="website"
+          placeholder="about"
+          name="about"
           value={profile.about}
           onChange={oninputChange}
         />
@@ -112,18 +106,17 @@ const Editprofile = () => {
           value={profile.experties}
         >
           <option value="Plumber">Plumber</option>
-          <option value="Kitchen Appliances">Kitchen Appliances</option>
-          <option value="Electronic Appliances">Electronic Appliances</option>
-          <option value="Bike Mechanic">Bike Mechanic</option>
-          <option value="Car Mechanic">Car Mechanic</option>
+          <option value="Mechanics">Mechanics </option>
+          <option value="Technicians">Technicians</option>
+          <option value="Electricians">Electricians</option>
         </select>
 
         <input
           type="textarea"
           rows="400"
           cols="400"
-          placeholder="Enter website"
-          name="website"
+          placeholder="Experience"
+          name="experience"
           value={profile.experience}
           onChange={oninputChange}
         />

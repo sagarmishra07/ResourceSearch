@@ -9,35 +9,43 @@ const Myprofile = () => {
   return (
     <>
       <Usernavbar />
-      <div>
-        <center>
-          <h1>My Profile</h1>
-
-          <h2>NAME:{userdata.name}</h2>
-
-          <img
-            src={userdata.image}
-            height="200px"
-            width="200px"
-            alt="Profile PIc"
-          />
-          <h2>EMAIL:{userdata.email}</h2>
-          <h2>Phone:{userdata.phone}</h2>
-          <h2>Address:{userdata.address}</h2>
-          <h2>Experties:{userdata.experties}</h2>
-          <h2>Experience:{userdata.experience}</h2>
-          <h2>About me:{userdata.about}</h2>
-          <a href={userdata.document} download>
+      <center>
+        {userdata.experties || userdata.document ? (
+          <div>
+            <h1>My Profile</h1>
+            <h2>NAME:{userdata.name}</h2>
             <img
-              src={userdata.document}
-              height="600px"
-              width="500px"
-              alt="DOcuments"
+              src={userdata.image}
+              height="200px"
+              width="200px"
+              alt="Profile Pic"
             />
-          </a>
-          <Link to={`/editprofile/${userdata.uid}`}>edit profile</Link>
-        </center>
-      </div>
+            /<h2>EMAIL:{userdata.email}</h2>
+            <h2>Phone:{userdata.phone}</h2>
+            <h2>Address:{userdata.address}</h2>
+            <h2>Experties:{userdata.experties}</h2>
+            <h2>Experience:{userdata.experience}</h2>
+            <h2>Charge Per Hour:{userdata.charge}</h2>
+            <h2>About me:{userdata.about}</h2>
+            <a href={userdata.document} download>
+              <img
+                src={userdata.document}
+                height="600px"
+                width="500px"
+                alt="DOcuments"
+              />
+            </a>
+            <Link to={`/editprofile/${userdata.uid}`}>edit profile</Link>
+          </div>
+        ) : (
+          <div>
+            <h1> Add Your Profile First</h1>
+            <Link to={`/addprofile/${userdata.uid}`}>
+              <button>Add profile </button>
+            </Link>
+          </div>
+        )}
+      </center>
     </>
   );
 };
