@@ -1,0 +1,78 @@
+.register-main {
+  display: flex;
+  flex-direction: row;
+}
+
+.loginpic {
+  width: 700px;
+  height: 700px;
+}
+
+.left {
+  margin-left: 100px;
+  margin-top: 20px;
+}
+
+.right {
+  margin-left: 150px;
+  margin-top: -20px;
+  padding: 20px;
+}
+
+select {
+  font-size: 20px;
+  margin-bottom: 15px;
+  width: 90%;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.Register_form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-name,
+.register-email,
+.register-roles,
+.register-password {
+  padding-bottom: 10px;
+  font-size: 1.2em;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.register-input {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  width: 350px;
+  border: 0;
+  border-bottom: 2px solid black;
+  outline: 0;
+  color: black;
+  background: transparent;
+  transition: 0.2s;
+}
+
+.register-file {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  width: 350px;
+}
+
+.register-button {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  border-radius: 4px;
+  border: 0px;
+  background-color: gray;
+  color: white;
+}
+
+.register-button:hover {
+  color: black;
+  background-color: turquoise;
+}
