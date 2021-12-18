@@ -18,19 +18,24 @@ function Navbar() {
               Home
             </Link>
             <Link to="/resource" className="abs">
-              Resource
+              Services
             </Link>
 
             <Link to="/about" className="abs">
               About
             </Link>
             <Link to="/contact" className="abs">
-              <Link to="#" className="abs">
-                Hello, {userdata.name}
-              </Link>
+              Contact
             </Link>
+
+            <Link to="#" className="abs">
+              Hello, {userdata.name}
+            </Link>
+
             <button onClick={logout}>Logout</button>
-            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/dashboard" className="abs">
+              Dashboard
+            </Link>
           </div>
         ) : (
           <div className="navbar__items">

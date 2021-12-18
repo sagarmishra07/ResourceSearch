@@ -38,7 +38,7 @@ const Login = () => {
             <button className="Login_button">X</button>
           </Link>
           <div className="Login_form">
-            <h1 className="heading-login">The Maintainace Nepal</h1>
+            <h1 className="heading-login">The Maintenance Nepal</h1>
             <h2>Login Page </h2>
             <label className="Login_email">Email Address</label>
             <input

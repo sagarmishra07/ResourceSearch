@@ -3,7 +3,8 @@ import { db } from "../firebase";
 import Adminnavbar from "../Components/Navbar/Adminnavbar";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
-
+import Request from "../Components/Userdashboard/Request";
+import Adminrequest from "../Components/Admindashboard/Adminrequest";
 const Admindashboard = ({ userdata }) => {
   const history = useHistory;
   const [data, setData] = useState([]);
@@ -11,6 +12,7 @@ const Admindashboard = ({ userdata }) => {
   useEffect(async () => {
     const unsubscribe = await db
       .collection("users")
+      .where("status", "!=", "Admin")
 
       .onSnapshot((snapshot) => {
         const data = snapshot.docs.map((doc) => ({
@@ -37,18 +39,27 @@ const Admindashboard = ({ userdata }) => {
   return (
     <>
       <Adminnavbar />
+      <div
+      // style={{
+      //   border: "1px solid ",
+      //   marginLeft: "36em",
+      //   marginRight: "36em",
+      //   boxShadow: " 10px 10px 20px #1a1b1d",
+      // }}
+      />
       <div>
-        <section className="jobs">
+        <section>
           <div>
-            <h1>Welcome {userdata.name}</h1>
-            <img src={userdata.image} height="300" width="200" alt="" />
+            <h1 style={{ textAlign: "center" }}>Welcome {userdata.name}</h1>
 
-            <h1>Service Providers:{data.length}</h1>
+            <h1 style={{ textAlign: "center" }}>
+              Service Providers:{data.length}
+            </h1>
           </div>
         </section>
 
-        <h1>All Users</h1>
-        <table id="customers">
+        <h1 style={{ textAlign: "center" }}>All Users</h1>
+        <div>
           {data
             .filter((val) => {
               if (val.status != "Admin") {
@@ -57,27 +68,46 @@ const Admindashboard = ({ userdata }) => {
             })
             .map((val) => {
               return (
-                <div key={val.uid}>
+                <div
+                  style={{ paddingLeft: "700px", marginTop: "50px" }}
+                  key={val.uid}
+                >
                   <tr>
-                    <td>Name : {val.name}</td>
-                    <td>Email: {val.email}</td>
-                    <td>
-                      {" "}
-                      <Link to={`/userprofile/${val.uid}`}>
+                    <tr style={{ paddingBottom: "10px" }}>
+                      <td>Name: {val.name}</td>
+                    </tr>
+                    <tr style={{ paddingBottom: "10px" }}>
+                      <td>Email: {val.email}</td>
+                    </tr>
+                    <tr>
+                      <td>
                         {" "}
-                        <button>View Details</button>
-                      </Link>
-                    </td>
-                    <td>
-                      <button onClick={() => DeleteUser(val.uid)}>
-                        Delete User
-                      </button>
-                    </td>
+                        <Link to={`/userprofile/${val.uid}`}>
+                          {" "}
+                          <button style={{ marginBottom: "10px" }}>
+                            View Details
+                          </button>
+                        </Link>
+                      </td>
+                    </tr>
+                    <tr style={{ paddingBottom: "10px" }}>
+                      <td>
+                        <button
+                          style={{ marginBottom: "10px" }}
+                          onClick={() => DeleteUser(val.uid)}
+                        >
+                          Delete User
+                        </button>
+                        <div>
+                          <Adminrequest userdata={val.uid} />
+                        </div>
+                      </td>
+                    </tr>
                   </tr>
                 </div>
               );
             })}
-        </table>
+        </div>
       </div>
     </>
   );

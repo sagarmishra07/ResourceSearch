@@ -4,6 +4,7 @@ import { db } from "../../firebase";
 import Moment from "react-moment";
 const Request = ({ userdata }) => {
   const [request, setRequest] = useState([]);
+
   const [requestcount, setRequestcount] = useState([]);
 
   useEffect(async () => {
@@ -43,18 +44,20 @@ const Request = ({ userdata }) => {
         {requestcount} Requests
         <section>
           <div>
-            {request.map((user) => (
-              <div key={user.requestid}>
+            {request.map((user, index) => (
+              <div key={index}>
                 <div className="card">
-                  <h1>Name:{user.user}</h1>
+                  <h1>{user.user}</h1>
+
                   <img
                     src={user.image}
                     alt="no image"
                     height="100"
                     width="100"
                   />
-                  <h1>Phone:{user.phone}</h1>
-                  <h1>Address:{user.address}</h1>
+                  <h1>{user.experties}</h1>
+                  <h1>{user.address}</h1>
+                  <h1>{user.phone}</h1>
 
                   <Moment fromNow>{user.created_at.toDate()}</Moment>
 

@@ -2,29 +2,43 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { auth, db } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { setDefaultLocale } from "javascript-time-ago";
-
+import { AiTwotoneLike } from "react-icons/all";
+import { AiOutlineLike } from "react-icons/all";
 const Recommend = ({ uid }) => {
   const [likes, setLikes] = useState([]);
+  const [hasliked, setHasliked] = useState(false);
   const users = useSelector((state) => state.firebase.profile);
+
   const [data, setData] = useState([]);
+  const [data1, setData1] = useState();
   const [user] = useAuthState(auth);
 
   const likepost = async () => {
-    await db
-      .collection("users")
-      .doc(uid)
-      .collection("likes")
-
-      .add({
-        users: users.uid,
-      })
-
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
-      });
+    if (hasliked) {
+      await db
+        .collection("users")
+        .doc(uid)
+        .collection("likes")
+        .doc(data.likessid)
+        .delete();
+    } else {
+      await db
+        .collection("users")
+        .doc(uid)
+        .collection("likes")
+        .doc(users.uid)
+        .set({
+          users: users.uid,
+        });
+    }
   };
 
+  useEffect(
+    () =>
+      setHasliked(data.findIndex((like) => like.likessid === users.uid) !== -1),
+
+    []
+  );
   useEffect(async () => {
     const unsubscribe = await db
       .collection("users")
@@ -34,7 +48,7 @@ const Recommend = ({ uid }) => {
 
       .onSnapshot((snapshot) => {
         const data = snapshot.docs.map((doc) => ({
-          likesid: doc.id,
+          likessid: doc.id,
           ...doc.data(),
         }));
 
@@ -49,13 +63,8 @@ const Recommend = ({ uid }) => {
 
   return (
     <div>
-      {users.status == "Resource" || !user ? (
-        <h1></h1>
-      ) : (
-        <button type="submit" onClick={() => likepost()}>
-          Recommend
-        </button>
-      )}
+      <AiOutlineLike size="35" onClick={() => likepost()}></AiOutlineLike>
+
       <h4>{likes} Recommends</h4>
     </div>
   );

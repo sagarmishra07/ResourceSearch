@@ -35,7 +35,7 @@ const ProfileDetails = () => {
         address: loggeduser.address,
         image: loggeduser.image,
         created_at: new Date(),
-        status: "uncompleted",
+        status: "Uncompleted",
       })
       .then(alert("Request submited"));
   };
@@ -46,27 +46,35 @@ const ProfileDetails = () => {
       <div>
         <center>
           <h1>My Profile</h1>
-          <h2>NAME:{userdata.name}</h2>
-          <img
-            src={userdata.image}
-            height="200px"
-            width="200px"
-            alt="Profile Pic"
-          />
-          /<h2>EMAIL:{userdata.email}</h2>
-          <h2>Phone:{userdata.phone}</h2>
-          <h2>Address:{userdata.address}</h2>
-          <h2>Experties:{userdata.experties}</h2>
-          <h2>Experience:{userdata.experience}</h2>
-          <h2>Charge Per Hour:{userdata.charge}</h2>
-          <h2>About me:{userdata.about}</h2>
-          {userdata.uid == loggeduser.uid || loggeduser.status == "Resource" ? (
-            <h1></h1>
-          ) : (
-            <button type="submit" onClick={() => Request()}>
-              Request for Service
-            </button>
-          )}
+          <div
+            style={{
+              border: "1px solid ",
+              marginLeft: "36em",
+              marginRight: "36em",
+              boxShadow: " 10px 10px 20px #1a1b1d",
+            }}
+          >
+            <img
+              style={{ padding: "20px" }}
+              src={userdata.image}
+              height="200px"
+              width="200px"
+              alt="Profile Pic"
+            />
+            <h2>{userdata.name}</h2>
+            <h2>Experties:{userdata.experties}</h2>
+            <h2>Experience:{userdata.experience}</h2>
+            <h2>Charge Per Hour:{userdata.charge}</h2>
+            <h4> {userdata.about}</h4>
+            {userdata.uid == loggeduser.uid ||
+            loggeduser.status == "Resource" ? (
+              <h1></h1>
+            ) : (
+              <button type="submit" onClick={() => Request()}>
+                Request for Service
+              </button>
+            )}
+          </div>
         </center>
       </div>
     </>

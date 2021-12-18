@@ -48,10 +48,7 @@ const Register = () => {
 
         isVerified: "true",
       })
-      .then(history.push("/dashboard"))
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
-      });
+      .then(history.push("/dashboard"));
   };
   return (
     <>

@@ -18,7 +18,6 @@ const Userdashboard = ({ userdata }) => {
         <h2>
           <b>{userdata.about}</b>
         </h2>
-        <Request userdata={userdata} />
       </center>
     </div>
   );

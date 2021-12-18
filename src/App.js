@@ -17,6 +17,7 @@ import Edituserprofile from "./Components/Admindashboard/Edituserprofile";
 import ProfileDetails from "./Components/Homepage/ProfileDetails";
 import Locationfilter from "./Components/Resource/Locationfilter";
 import Request from "./Components/Userdashboard/Request";
+import Footer from "./Pages/Footer";
 
 const App = () => {
   const Error = () => {
@@ -52,6 +53,7 @@ const App = () => {
 
           <Route exact path="/">
             <Homepage />
+            <Footer />
           </Route>
           <Route path="/contact">
             <Contact />

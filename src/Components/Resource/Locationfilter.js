@@ -14,7 +14,7 @@ const Locationfilter = () => {
     let unsubscrbe;
     unsubscrbe = db
       .collection("users")
-      .orderBy("charge", "asc")
+      .orderBy("experience", "desc")
       .onSnapshot((snapshot) => {
         setData(snapshot.docs.map((doc) => doc.data()));
       });
@@ -27,21 +27,21 @@ const Locationfilter = () => {
     <>
       <Navbar />
       <h1>Service Providers from {userdata.address}</h1>
-      <div>
-        <div className="jobs">
-          {data
-            .filter((val) => {
-              if (
-                val.address == userdata.address &&
-                val.uid != userdata.uid &&
-                val.status != "Viewer"
-              )
-                return val;
-            })
+      <div className="profile-card">
+        {data
+          .filter((val) => {
+            if (
+              val.address === userdata.address &&
+              val.uid != userdata.uid &&
+              val.status == "Resource"
+            )
+              return val;
+          })
 
-            .map((post, index) => (
-              <div key={index} className="card">
-                <h3>{post.experties}</h3>
+          .map((post, index) => (
+            <div key={index}>
+              <div className="card-items">
+                <h1>{post.experties}</h1>
                 <img
                   src={post.image}
                   height="500px"
@@ -52,11 +52,11 @@ const Locationfilter = () => {
                 <p>{post.experties}</p>
                 Added <Moment fromNow>{post.created_at.toDate()}</Moment>
                 <Link to={`/profiledetails/${post.uid}`}>
-                  <button>View Details</button>
+                  <buttonc>View Details</buttonc>
                 </Link>
               </div>
-            ))}
-        </div>
+            </div>
+          ))}
       </div>
     </>
   );

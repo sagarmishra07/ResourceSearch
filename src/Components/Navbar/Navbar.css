@@ -1,11 +1,15 @@
 .navbar__container {
-  font-size: 24px;
+  font-size: 25px;
   display: flex;
   height: fit-content;
-  background-color: #61b0b7;
+  background-color: black;
   padding-bottom: 0.5em;
   align-items: center;
   justify-content: center;
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  box-shadow: 10px 10px 20px #1a1b1d;
 }
 
 .abs {
