@@ -1,12 +1,12 @@
 import firebase from "firebase";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCihqnY1Yi1dITgLqcEV63pUMinVWbMfmw",
-  authDomain: "quota-b0891.firebaseapp.com",
-  projectId: "quota-b0891",
-  storageBucket: "quota-b0891.appspot.com",
-  messagingSenderId: "331478502731",
-  appId: "1:331478502731:web:f3e24d9c2b55cd180a2cce",
+  apiKey: "AIzaSyBhYZ-Ko4bYr9pEyDiquXRMGu8DGr-M_yk",
+  authDomain: "resourcesearch-dad50.firebaseapp.com",
+  projectId: "resourcesearch-dad50",
+  storageBucket: "resourcesearch-dad50.appspot.com",
+  messagingSenderId: "991920636489",
+  appId: "1:991920636489:web:7bb7103510bf3c8fb27598",
 };
 const app = firebase.initializeApp(firebaseConfig);
 const auth = app.auth();
